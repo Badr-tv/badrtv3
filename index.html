@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8" />
-  <title>قناة الإنسان</title>
-  <style>
-    /* تعطيل التمرير نهائيًا */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background-color: black;
-      overflow: hidden; /* يمنع التمرير */
-      touch-action: none; /* يمنع التمرير باللمس في الأجهزة المحمولة */
-      -ms-touch-action: none; /* دعم IE */
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      pointer-events: auto; /* السماح بالتفاعل مع الفيديو */
-      user-select: none; /* منع تحديد النص */
-    }
-  </style>
-</head>
-<body>
-  <iframe 
-    src="https://www.elahmad.com/tv/mobiletv/glarb.php?id=alinsen" 
-    allowfullscreen
-    allow="autoplay; fullscreen; picture-in-picture; xr-spatial-tracking; encrypted-media">
-  </iframe>
-</body>
-</html>
+<script>
+  // انتظر تحميل iframe
+  window.addEventListener('DOMContentLoaded', () => {
+    const iframe = document.querySelector('iframe');
+
+    // نحاول الوصول لمحتوى iframe بعد تحميله (لن يعمل إلا إذا كان نفس الدومين)
+    iframe.onload = () => {
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const allText = iframeDoc.body.innerHTML;
+        iframeDoc.body.innerHTML = allText.replace(/elahmad\.com/gi, 'badr.tv');
+      } catch (e) {
+        console.warn("لا يمكن تعديل محتوى iframe لأنه من دومين مختلف (cross-origin).");
+      }
+    };
+  });
+</script>
