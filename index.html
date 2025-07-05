@@ -1,17 +1,1 @@
-<script>
-  // انتظر تحميل iframe
-  window.addEventListener('DOMContentLoaded', () => {
-    const iframe = document.querySelector('iframe');
-
-    // نحاول الوصول لمحتوى iframe بعد تحميله (لن يعمل إلا إذا كان نفس الدومين)
-    iframe.onload = () => {
-      try {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        const allText = iframeDoc.body.innerHTML;
-        iframeDoc.body.innerHTML = allText.replace(/elahmad\.com/gi, 'badr.tv');
-      } catch (e) {
-        console.warn("لا يمكن تعديل محتوى iframe لأنه من دومين مختلف (cross-origin).");
-      }
-    };
-  });
-</script>
+<iframe title="Direct" width="560" height="315" src="https://peertube.uno/videos/embed/w1KiJ5z7xWDnHBpZo5Eixy" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
