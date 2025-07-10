@@ -1,90 +1,24 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>beIN Sports Player</title>
-  <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
+  <title>مشاهدة القناة</title>
   <style>
-    body {
+    body, html {
       margin: 0;
-      background-color: #1d1d1d;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      height: 100%;
     }
-
-    .player-container {
-      max-width: 100%;
-      position: relative;
-    }
-
-    .video-js .vjs-control-bar {
-      font-size: 16px;
-    }
-
-    .top-bar {
-      position: absolute;
-      top: 0;
+    iframe {
       width: 100%;
-      background-color: #333;
-      color: white;
-      padding: 10px;
-      font-size: 18px;
-      text-align: center;
-      z-index: 10;
-    }
-
-    .duolingo-banner {
-      background: #ffffff;
-      text-align: center;
-      padding: 10px;
-    }
-
-    .duolingo-banner img {
-      height: 40px;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
-
-    .duolingo-banner span {
-      font-weight: bold;
-      color: #00c853;
-    }
-
-    .duolingo-banner a {
-      background-color: #00c853;
-      color: white;
-      padding: 5px 12px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-left: 10px;
+      height: 100vh;
+      border: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="player-container">
-    <div class="top-bar">beIN Sports 1</div>
+  <iframe src="https://www.elahmad.com/tv/live/shahid_shaka.php?id=cnarabia" allowfullscreen></iframe>
 
-    <video
-      id="my-video"
-      class="video-js vjs-default-skin"
-      controls
-      preload="auto"
-      width="100%"
-      height="auto"
-      autoplay
-      data-setup='{}'>
-      <source src="https://games1.elahmad.online/tv751_www.elahmad.com_baraem/index.m3u8?token=58edcde0368374ec4b70a219813aa91587031115-9d3d97d2f2585b10a1c052e05b88fc1c-1752162401-1752151601" type="application/x-mpegURL" />
-      عذرًا، متصفحك لا يدعم الفيديو.
-    </video>
-  </div>
-
-  <div class="duolingo-banner">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Duolingo_logo_2022.svg" alt="Duolingo">
-    <span>the #1 language learning app</span>
-    <a href="#">PLAY NOW</a>
-  </div>
-
-  <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
 </body>
 </html>
