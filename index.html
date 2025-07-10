@@ -22,31 +22,16 @@
       z-index: 0;
     }
 
-    /* حاجز شفاف يمنع النقر إلا في الأسفل */
+    /* حاجز شفاف يمنع النقر على كل الشاشة ما عدا 25 بكسل في الأسفل */
     .blocker {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(100% - 25px);
+      height: calc(100% - 25px); /* يترك فقط 25 بكسل في الأسفل */
       background: transparent;
-      z-index: 9999;
       pointer-events: auto;
-    }
-
-    /* تنبيه مرئي للمستخدم */
-    .click-hint {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 25px;
-      background: rgba(0, 0, 0, 0.2);
-      color: white;
-      font-size: 12px;
-      text-align: center;
-      line-height: 25px;
-      z-index: 10000;
+      z-index: 9999;
     }
   </style>
 </head>
@@ -59,7 +44,6 @@
   </iframe>
 
   <div class="blocker"></div>
-  <div class="click-hint">↧ اضغط هنا للمشاهدة ↧</div>
 
 </body>
 </html>
