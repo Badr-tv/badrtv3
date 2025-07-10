@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>مشغل DASH</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.0/shaka-player.compiled.min.js"></script>
+  <title>تشغيل بث DASH</title>
+  <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.6.0/dist/shaka-player.compiled.min.js"></script>
   <style>
     body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; }
-    video { width: 80%; height: auto; border: 2px solid #fff; }
+    video { width: 90%; height: auto; }
   </style>
 </head>
 <body>
   <video id="video" controls autoplay></video>
-
   <script>
     async function initPlayer() {
       const video = document.getElementById('video');
       const player = new shaka.Player(video);
 
-      // اختياري: عرض الخطأ في الكونسول
       player.addEventListener('error', (e) => {
-        console.error('خطأ في المشغل:', e.detail);
+        console.error('خطأ:', e.detail);
       });
 
+      // جرب الرابط الأصلي لـ manifest
+      const manifestUrl = "https://pop1e8.cdn.intigral-ott.net/bpk-token/1ae@wermquqresbssyaejbxdqczajrfjedefwu2jzvca/CNA/CNA.isml/manifest.mpd";
+
       try {
-        // أدخل رابطك هنا
-        await player.load('https://pop1e8.cdn.intigral-ott.net/bpk-token/1ae@wermquqresbssyaejbxdqczajrfjedefwu2jzvca/CNA/CNA.isml/manifest.mpd');
-        console.log('تم تحميل الفيديو بنجاح!');
+        await player.load(manifestUrl);
+        console.log("تم تحميل الفيديو!");
       } catch (err) {
-        console.error('فشل في تحميل الفيديو:', err);
+        console.error("فشل التحميل:", err);
       }
     }
 
