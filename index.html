@@ -22,28 +22,30 @@
       z-index: 0;
     }
 
-    /* حاجز شفاف يمنع النقر على كل الشاشة ما عدا 25 بكسل في الأسفل */
-    .blocker {
+    /* الحاجز الشفاف يغطي تقريبًا كل الشاشة */
+    .big-blocker {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(100% - 25px); /* يترك فقط 25 بكسل في الأسفل */
+      height: calc(100% - 80px); /* يترك فقط 80 بكسل من الأسفل */
       background: transparent;
-      pointer-events: auto;
       z-index: 9999;
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
 
+  <!-- iframe -->
   <iframe 
     src="https://www.elahmad.com/tv/watchtv.php?id=baraem"
     allowfullscreen
     allow="autoplay; fullscreen; picture-in-picture; encrypted-media">
   </iframe>
 
-  <div class="blocker"></div>
+  <!-- الحاجز الشفاف يغطي كل شيء ما عدا الأسفل -->
+  <div class="big-blocker"></div>
 
 </body>
 </html>
