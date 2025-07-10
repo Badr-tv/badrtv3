@@ -2,8 +2,8 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>قناة براعم</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     html, body {
       margin: 0;
@@ -19,32 +19,32 @@
       width: 100%;
       height: 100%;
       border: none;
-      z-index: 1;
+      z-index: 0; /* مهم: يجب أن يكون تحت الحاجز */
     }
 
-    /* الحاجز العلوي */
+    /* الحاجز الشفاف العلوي */
     .top-blocker {
       position: fixed;
       top: 0;
       left: 0;
+      height: 100px; /* الارتفاع الذي تريده للحاجز */
       width: 100%;
-      height: 100px; /* غيّره حسب حاجتك */
-      background-color: rgba(0, 0, 0, 0); /* شفاف تمامًا */
+      background: rgba(255, 255, 255, 0); /* شفاف تمامًا */
       z-index: 9999; /* فوق كل شيء */
-      pointer-events: all; /* يمنع النقر على ما تحته */
+      pointer-events: auto; /* مهم جدًا: يمنع النقرات على ما تحته */
     }
   </style>
 </head>
 <body>
 
-  <!-- مشغل الفيديو -->
+  <!-- iframe في الخلف -->
   <iframe 
-    src="https://www.elahmad.com/tv/watchtv.php?id=baraem" 
-    allowfullscreen 
+    src="https://www.elahmad.com/tv/watchtv.php?id=baraem"
+    allowfullscreen
     allow="autoplay; fullscreen; picture-in-picture; encrypted-media">
   </iframe>
 
-  <!-- الحاجز العلوي فوق كل شيء -->
+  <!-- الحاجز الشفاف فوق iframe -->
   <div class="top-blocker"></div>
 
 </body>
