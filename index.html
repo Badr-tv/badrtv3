@@ -1,37 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>تشغيل بث DASH</title>
-  <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.6.0/dist/shaka-player.compiled.min.js"></script>
-  <style>
-    body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; }
-    video { width: 90%; height: auto; }
-  </style>
+  <meta charset="UTF-8" />
+  <title>تشغيل DASH في JW Player</title>
+  <script src="https://cdn.jwplayer.com/libraries/your-library-key.js"></script>
 </head>
 <body>
-  <video id="video" controls autoplay></video>
+  <div id="my-player"></div>
+
   <script>
-    async function initPlayer() {
-      const video = document.getElementById('video');
-      const player = new shaka.Player(video);
-
-      player.addEventListener('error', (e) => {
-        console.error('خطأ:', e.detail);
-      });
-
-      // جرب الرابط الأصلي لـ manifest
-      const manifestUrl = "https://pop1e8.cdn.intigral-ott.net/bpk-token/1ae@wermquqresbssyaejbxdqczajrfjedefwu2jzvca/CNA/CNA.isml/manifest.mpd";
-
-      try {
-        await player.load(manifestUrl);
-        console.log("تم تحميل الفيديو!");
-      } catch (err) {
-        console.error("فشل التحميل:", err);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', initPlayer);
+    jwplayer("my-player").setup({
+      file: "https://pop1e3.cdn.intigral-ott.net/bpk-token/1ai@jxulirr5sobfgtxue4f3xjxqcl0f3ckmjnt3ixda/CNA/CNA.isml/manifest.mpd",
+      type: "dash",
+      width: "100%",
+      aspectratio: "16:9",
+      // drm: {
+      //   widevine: {
+      //     url: "https://your-license-server-url"
+      //   }
+      // },
+      autostart: true,
+      controls: true
+    });
   </script>
 </body>
 </html>
