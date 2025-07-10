@@ -2,56 +2,89 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>براعم مباشر تلقائي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beIN Sports Player</title>
+  <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #1d1d1d;
+      font-family: Arial, sans-serif;
+    }
+
+    .player-container {
+      max-width: 100%;
+      position: relative;
+    }
+
+    .video-js .vjs-control-bar {
+      font-size: 16px;
+    }
+
+    .top-bar {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      font-size: 18px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .duolingo-banner {
+      background: #ffffff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .duolingo-banner img {
+      height: 40px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .duolingo-banner span {
+      font-weight: bold;
+      color: #00c853;
+    }
+
+    .duolingo-banner a {
+      background-color: #00c853;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0; background:black;">
+<body>
 
-<video id="videoPlayer" controls autoplay style="width:100vw; height:100vh; background:black;">
-  متصفحك لا يدعم تشغيل الفيديو المباشر.
-</video>
+  <div class="player-container">
+    <div class="top-bar">beIN Sports 1</div>
 
-<script>
-  async function getStreamURL() {
-    try {
-      // تجاوز حماية CORS باستخدام proxy مجاني
-      const proxy = "https://cors-anywhere.herokuapp.com/";
-      const sourceUrl = "https://www.elahmad.com/tv/mobiletv/glarb.php?id=baraem";
+    <video
+      id="my-video"
+      class="video-js vjs-default-skin"
+      controls
+      preload="auto"
+      width="100%"
+      height="auto"
+      autoplay
+      data-setup='{}'>
+      <source src="https://example.com/live/stream.m3u8" type="application/x-mpegURL" />
+      عذرًا، متصفحك لا يدعم الفيديو.
+    </video>
+  </div>
 
-      const response = await fetch(proxy + sourceUrl);
-      const html = await response.text();
+  <div class="duolingo-banner">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Duolingo_logo_2022.svg" alt="Duolingo">
+    <span>the #1 language learning app</span>
+    <a href="#">PLAY NOW</a>
+  </div>
 
-      // استخراج رابط m3u8 الذي يحتوي على التوكن
-      const match = html.match(/https:\/\/games1\.elahmad\.online\/[^"]+\.m3u8\?token=[^"]+/);
-
-      if (match && match[0]) {
-        return match[0];
-      } else {
-        console.error("لم يتم العثور على الرابط.");
-        return null;
-      }
-
-    } catch (err) {
-      console.error("خطأ في جلب الرابط:", err);
-      return null;
-    }
-  }
-
-  async function playStream() {
-    const video = document.getElementById("videoPlayer");
-    const streamURL = await getStreamURL();
-    if (streamURL) {
-      video.src = streamURL;
-      video.load();
-      video.play();
-    }
-  }
-
-  // أول تشغيل
-  playStream();
-
-  // تحديث كل 2.5 ساعة (9000000 ms)
-  setInterval(playStream, 2.5 * 60 * 60 * 1000);
-</script>
-
+  <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
 </body>
 </html>
