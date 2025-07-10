@@ -19,33 +19,33 @@
       width: 100%;
       height: 100%;
       border: none;
-      z-index: 0; /* يجعل iframe في الخلف */
+      z-index: 0;
     }
 
-    /* الحاجز الشفاف يغطي النصف العلوي فقط */
-    .half-blocker {
+    /* الحاجز الشفاف يغطي تقريبًا كل الشاشة */
+    .big-blocker {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 50%; /* نصف الشاشة */
-      background: transparent; /* شفاف تمامًا */
-      z-index: 9999; /* فوق iframe */
-      pointer-events: auto; /* يمنع التفاعل مع ما تحته */
+      height: calc(100% - 80px); /* يترك فقط 80 بكسل من الأسفل */
+      background: transparent;
+      z-index: 9999;
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- iframe في الخلف -->
+  <!-- iframe -->
   <iframe 
     src="https://www.elahmad.com/tv/watchtv.php?id=baraem"
     allowfullscreen
     allow="autoplay; fullscreen; picture-in-picture; encrypted-media">
   </iframe>
 
-  <!-- حاجز يمنع النقر في النصف العلوي -->
-  <div class="half-blocker"></div>
+  <!-- الحاجز الشفاف يغطي كل شيء ما عدا الأسفل -->
+  <div class="big-blocker"></div>
 
 </body>
 </html>
