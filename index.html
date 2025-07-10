@@ -1,51 +1,37 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>قناة براعم</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشغل DASH</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.0/shaka-player.compiled.min.js"></script>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      z-index: 0;
-    }
-
-    /* الحاجز الشفاف يغطي تقريبًا كل الشاشة */
-    .big-blocker {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: calc(100% - 80px); /* يترك فقط 80 بكسل من الأسفل */
-      background: transparent;
-      z-index: 9999;
-      pointer-events: auto;
-    }
+    body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    video { width: 80%; height: auto; border: 2px solid #fff; }
   </style>
 </head>
 <body>
+  <video id="video" controls autoplay></video>
 
-  <!-- iframe -->
-  <iframe 
-    src="https://www.elahmad.com/tv/watchtv.php?id=baraem"
-    allowfullscreen
-    allow="autoplay; fullscreen; picture-in-picture; encrypted-media">
-  </iframe>
+  <script>
+    async function initPlayer() {
+      const video = document.getElementById('video');
+      const player = new shaka.Player(video);
 
-  <!-- الحاجز الشفاف يغطي كل شيء ما عدا الأسفل -->
-  <div class="big-blocker"></div>
+      // اختياري: عرض الخطأ في الكونسول
+      player.addEventListener('error', (e) => {
+        console.error('خطأ في المشغل:', e.detail);
+      });
 
+      try {
+        // أدخل رابطك هنا
+        await player.load('https://pop1e8.cdn.intigral-ott.net/bpk-token/1ae@wermquqresbssyaejbxdqczajrfjedefwu2jzvca/CNA/CNA.isml/manifest.mpd');
+        console.log('تم تحميل الفيديو بنجاح!');
+      } catch (err) {
+        console.error('فشل في تحميل الفيديو:', err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initPlayer);
+  </script>
 </body>
 </html>
