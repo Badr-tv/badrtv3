@@ -11,15 +11,33 @@
       height: 100%;
       overflow: hidden;
     }
+
+    /* الفيديو على كامل الشاشة */
     iframe {
       border: none;
       width: 100%;
       height: 100%;
     }
+
+    /* الحاجز العلوي */
+    .top-blocker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px; /* غيّر الارتفاع حسب رغبتك */
+      background-color: transparent;
+      z-index: 9999;
+      pointer-events: all; /* مهم: يمنع التفاعل مع ما تحته */
+    }
   </style>
 </head>
 <body>
 
+  <!-- الحاجز الشفاف -->
+  <div class="top-blocker"></div>
+
+  <!-- مشغل الفيديو -->
   <iframe 
     src="https://www.elahmad.com/tv/watchtv.php?id=baraem" 
     allowfullscreen 
