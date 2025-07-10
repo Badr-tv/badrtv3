@@ -1,25 +1,44 @@
-<video id="player" controls autoplay style="width:100vw; height:100vh; background:black;"></video>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>براعم مباشر تلقائي</title>
+</head>
+<body style="margin:0; padding:0; background:black;">
+
+<video id="videoPlayer" controls autoplay style="width:100vw; height:100vh; background:black;">
+  متصفحك لا يدعم تشغيل الفيديو المباشر.
+</video>
 
 <script>
-  async function fetchStreamLink() {
+  async function getStreamURL() {
     try {
-      const response = await fetch("https://cors-anywhere.herokuapp.com/https://www.elahmad.com/tv/mobiletv/glarb.php?id=baraem");
+      // تجاوز حماية CORS باستخدام proxy مجاني
+      const proxy = "https://cors-anywhere.herokuapp.com/";
+      const sourceUrl = "https://www.elahmad.com/tv/mobiletv/glarb.php?id=baraem";
+
+      const response = await fetch(proxy + sourceUrl);
       const html = await response.text();
+
+      // استخراج رابط m3u8 الذي يحتوي على التوكن
       const match = html.match(/https:\/\/games1\.elahmad\.online\/[^"]+\.m3u8\?token=[^"]+/);
+
       if (match && match[0]) {
         return match[0];
       } else {
-        throw new Error("لم يتم العثور على الرابط.");
+        console.error("لم يتم العثور على الرابط.");
+        return null;
       }
-    } catch (error) {
-      console.error("خطأ في جلب الرابط:", error);
+
+    } catch (err) {
+      console.error("خطأ في جلب الرابط:", err);
       return null;
     }
   }
 
-  async function startPlayer() {
-    const video = document.getElementById("player");
-    const streamURL = await fetchStreamLink();
+  async function playStream() {
+    const video = document.getElementById("videoPlayer");
+    const streamURL = await getStreamURL();
     if (streamURL) {
       video.src = streamURL;
       video.load();
@@ -27,6 +46,12 @@
     }
   }
 
-  startPlayer();
-  setInterval(startPlayer, 2.5 * 60 * 60 * 1000);
+  // أول تشغيل
+  playStream();
+
+  // تحديث كل 2.5 ساعة (9000000 ms)
+  setInterval(playStream, 2.5 * 60 * 60 * 1000);
 </script>
+
+</body>
+</html>
