@@ -22,13 +22,13 @@
       z-index: 0;
     }
 
-    /* الحاجز الشفاف يغطي كل الشاشة ما عدا 20 بكسل من الأسفل */
-    .full-blocker-except-bottom {
+    /* الحاجز يغطي كل الشاشة باستثناء 25 بكسل في الأسفل */
+    .blocker {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(100% - 20px); /* يترك فقط 20 بكسل من الأسفل */
+      height: calc(100% - 25px); /* يترك فقط 25 بكسل */
       background: transparent;
       z-index: 9999;
       pointer-events: auto;
@@ -44,8 +44,8 @@
     allow="autoplay; fullscreen; picture-in-picture; encrypted-media">
   </iframe>
 
-  <!-- حاجز شفاف يمنع النقر تقريبًا على كل شيء -->
-  <div class="full-blocker-except-bottom"></div>
+  <!-- الحاجز الشفاف -->
+  <div class="blocker"></div>
 
 </body>
 </html>
