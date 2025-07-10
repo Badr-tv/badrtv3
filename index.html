@@ -12,11 +12,14 @@
       overflow: hidden;
     }
 
-    /* الفيديو على كامل الشاشة */
     iframe {
-      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
+      border: none;
+      z-index: 1;
     }
 
     /* الحاجز العلوي */
@@ -25,17 +28,14 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100px; /* غيّر الارتفاع حسب رغبتك */
-      background-color: transparent;
-      z-index: 9999;
-      pointer-events: all; /* مهم: يمنع التفاعل مع ما تحته */
+      height: 100px; /* غيّره حسب حاجتك */
+      background-color: rgba(0, 0, 0, 0); /* شفاف تمامًا */
+      z-index: 9999; /* فوق كل شيء */
+      pointer-events: all; /* يمنع النقر على ما تحته */
     }
   </style>
 </head>
 <body>
-
-  <!-- الحاجز الشفاف -->
-  <div class="top-blocker"></div>
 
   <!-- مشغل الفيديو -->
   <iframe 
@@ -43,6 +43,9 @@
     allowfullscreen 
     allow="autoplay; fullscreen; picture-in-picture; encrypted-media">
   </iframe>
+
+  <!-- الحاجز العلوي فوق كل شيء -->
+  <div class="top-blocker"></div>
 
 </body>
 </html>
