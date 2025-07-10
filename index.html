@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>CN Arabia</title>
+  <meta charset="UTF-8" />
+  <title>بث مباشر</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
-
-  <a href="https://www.elahmad.com/tv/live/shahid_shaka.php?id=cnarabia" target="_blank">
-    اضغط هنا لمشاهدة CN Arabia
-  </a>
-
+  <video id="video" controls autoplay></video>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    const hls = new Hls();
+    hls.loadSource('رابطك.m3u8');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      video.play();
+    });
+  </script>
 </body>
 </html>
