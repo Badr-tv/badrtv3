@@ -1,58 +1,25 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>بث مباشر - Yalla Shoot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #000;
-      font-family: sans-serif;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .player-container {
-      width: 100%;
-      max-width: 1000px;
-      aspect-ratio: 16 / 9;
-      position: relative;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    h1 {
-      color: white;
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-  </style>
+  <title>مشغل البث</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
+  <video id="video" width="100%" height="auto" controls autoplay></video>
 
-  <h1>البث المباشر لقناة يلا شوت سبورت 5</h1>
-
-  <div class="player-container">
-    <iframe 
-      src="https://aa.yalla1shoot.online/albaplayer/sports-5/?serv=1" 
-      allowfullscreen 
-      loading="lazy"
-    ></iframe>
-  </div>
-
+  <script>
+    var video = document.getElementById('video');
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource('https://yy.yallashoot.shop/dnazfrf/tracks-v1a1/mono.ts.m3u8');
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = 'https://yy.yallashoot.shop/dnazfrf/tracks-v1a1/mono.ts.m3u8';
+    }
+  </script>
 </body>
 </html>
