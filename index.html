@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>بث مباشر - BADR TV </title>
+  <title>بث مباشر - BADR TV</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
@@ -11,48 +11,74 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      height: 100%;
       background-color: #000;
       font-family: sans-serif;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 1.4rem;
+      margin: 10px 0;
     }
 
     .player-container {
       width: 100%;
-      max-width: 1000px;
-      aspect-ratio: 16 / 9;
+      height: calc(100vh - 40px);
       position: relative;
+      overflow: hidden;
     }
 
     iframe {
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
     }
 
-    h1 {
-      color: white;
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+    .fullscreen-button {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
 
-  <h1>البث المباشر لقناة badr tv </h1>
+  <h1>البث المباشر لقناة BADR TV</h1>
 
-  <div class="player-container">
+  <div class="player-container" id="playerContainer">
     <iframe 
-      src="https://aa.yalla1shoot.online/albaplayer/sports-1/?serv=1" 
-      allowfullscreen 
+      id="liveFrame"
+      src="https://aa.yalla1shoot.online/albaplayer/sports-1/?serv=1"
+      sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
+      allowfullscreen
       loading="lazy"
     ></iframe>
+    <button class="fullscreen-button" onclick="goFullscreen()">ملء الشاشة</button>
   </div>
+
+  <script>
+    function goFullscreen() {
+      const container = document.getElementById("playerContainer");
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen();
+      }
+    }
+  </script>
 
 </body>
 </html>
