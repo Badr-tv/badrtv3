@@ -11,23 +11,34 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
+    body {
+      font-family: 'Arial', sans-serif;
       background-color: #000;
-      font-family: sans-serif;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    h1 {
-      color: white;
+    header {
       text-align: center;
-      font-size: 1.4rem;
-      margin: 10px 0;
+      padding: 20px 10px 10px;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      color: #00d4ff;
     }
 
     .player-container {
-      width: 100%;
-      height: calc(100vh - 40px);
       position: relative;
+      width: 100%;
+      max-width: 1000px;
+      height: 500px;
+      margin: 0 auto;
+      border: 2px solid #00d4ff;
+      border-radius: 10px;
       overflow: hidden;
     }
 
@@ -38,33 +49,45 @@
       display: block;
     }
 
-    .fullscreen-button {
+    .fullscreen-btn {
       position: absolute;
       bottom: 10px;
       left: 10px;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: none;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
       padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: 5px;
       z-index: 10;
+      font-size: 0.9rem;
+    }
+
+    .fullscreen-btn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    @media (max-width: 768px) {
+      .player-container {
+        height: 250px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>البث المباشر لقناة BADR TV</h1>
+  <header>
+    <h1>البث المباشر لقناة BADR TV</h1>
+  </header>
 
   <div class="player-container" id="playerContainer">
-    <iframe 
+    <iframe
       id="liveFrame"
       src="https://aa.yalla1shoot.online/albaplayer/sports-1/?serv=1"
-      sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
       allowfullscreen
-      loading="lazy"
+      sandbox="allow-scripts allow-same-origin allow-presentation"
     ></iframe>
-    <button class="fullscreen-button" onclick="goFullscreen()">ملء الشاشة</button>
+    <button class="fullscreen-btn" onclick="goFullscreen()">ملء الشاشة</button>
   </div>
 
   <script>
