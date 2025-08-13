@@ -1,34 +1,89 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>بث مباشر - قناة Sports 4</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تشغيل الفيديو بسرعة – HLS (.m3u8)</title>
   <style>
     body {
-      margin: 0;
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 15px;
       background-color: #000;
     }
-    iframe {
-      display: block;
-      width: 100%;
-      height: 100vh;
-      border: none;
+    .controls {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .controls button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .speed-display {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
+  <div class="video-container">
+    <h1>تشغيل فيديو HLS مع تحكم سرعة التشغيل</h1>
+    <video id="hlsPlayer" controls>
+      <source src="https://live-ak.vimeocdn.com/exp=1755116073~acl=%2F141d87f1-a5df-4c00-b539-038df351313f%2F%2A~hmac=9100e45e0fb7da93557b8dfafb52915aaca627ffc8d6fa0f148a7a53b994ee51/141d87f1-a5df-4c00-b539-038df351313f/avc/720p/chunklist.m3u8?max_segments=10&_HLS_skip=YES" type="application/x-mpegURL">
+      المتصفح الخاص بك لا يدعم تشغيل فيديو HLS مباشرةً.
+    </video>
+    <div class="controls">
+      <button id="decreaseSpeed">-</button>
+      <span class="speed-display" id="speedValue">1×</span>
+      <button id="increaseSpeed">+</button>
+    </div>
+  </div>
 
-  <iframe 
-    allow="autoplay; encrypted-media" 
-    allowfullscreen="true" 
-    class="" 
-    height="620px" 
-    id="streamFrame" 
-    rameborder="0" 
-    src="https://aa.yallaliveshoot.online/albaplayer/sports-b3/" 
-    width="100%">
-  </iframe>
+  <script>
+    const video = document.getElementById('hlsPlayer');
+    const speedValue = document.getElementById('speedValue');
+    const btnDec = document.getElementById('decreaseSpeed');
+    const btnInc = document.getElementById('increaseSpeed');
 
+    // نطاق سرعة التشغيل: من 0.5 إلى 3.0، مع خطوة 0.25
+    const MIN_SPEED = 0.5;
+    const MAX_SPEED = 3.0;
+    const STEP = 0.25;
+
+    btnDec.addEventListener('click', () => {
+      let current = video.playbackRate;
+      let newSpeed = Math.max(MIN_SPEED, (current - STEP).toFixed(2));
+      video.playbackRate = newSpeed;
+      speedValue.textContent = newSpeed + '×';
+    });
+
+    btnInc.addEventListener('click', () => {
+      let current = video.playbackRate;
+      let newSpeed = Math.min(MAX_SPEED, (current + STEP).toFixed(2));
+      video.playbackRate = newSpeed;
+      speedValue.textContent = newSpeed + '×';
+    });
+
+    // تأكيد السرعة الافتراضية عند التحميل
+    video.addEventListener('loadedmetadata', () => {
+      speedValue.textContent = video.playbackRate.toFixed(2) + '×';
+    });
+  </script>
 </body>
 </html>
