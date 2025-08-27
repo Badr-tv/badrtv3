@@ -1,88 +1,209 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>تشغيل الفيديو بسرعة – HLS (.m3u8)</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BADR TV – تطبيق البث المباشر</title>
+  <meta name="description" content="BADR TV – أفضل تطبيق لمشاهدة المباريات والقنوات مجانًا. صفحة هبوط قابلة للنشر على GitHub Pages." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-8a+K6vD0cV9m7z3VJ5s2r3b5R6n6r6U3WkQv3r6l2o1h" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      padding: 20px;
-      background-color: #f5f5f5;
+    :root{
+      --bg:#0f3b2e;           /* الخلفية الداكنة */
+      --bg-soft:#1a4b3b;      /* ظل للخلفية */
+      --brand:#21c27a;        /* الأخضر الأساسي */
+      --brand-2:#18a864;      /* أخضر أغمق */
+      --text:#eaf4ef;         /* نص فاتح */
+      --muted:#cfe1d7;        /* نص ثانوي */
+      --card:#ffffff;         /* كرت */
+      --shadow: 0 12px 30px rgba(0,0,0,.18);
+      --radius: 18px;
     }
-    .video-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; 
+      background: radial-gradient(1200px 700px at 85% -10%, var(--bg-soft), var(--bg));
+      color:var(--text);
     }
-    video {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin-bottom: 15px;
-      background-color: #000;
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1100px, 94%); margin:auto}
+
+    /* Nav */
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand-logo{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;
+      background:linear-gradient(140deg, var(--brand), var(--brand-2)); color:#0b1d16; font-weight:800}
+    .brand h1{font-size:28px; letter-spacing:.5px; margin:0}
+    .nav a.btn{padding:10px 18px; background:var(--brand); border-radius:999px; color:#0b1d16; font-weight:700; box-shadow:var(--shadow)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; align-items:center; gap:36px; padding:26px 0 46px}
+    .hero h2{font-size:44px; margin:0 0 10px}
+    .hero p{color:var(--muted); margin:10px 0 22px; line-height:1.9}
+    .cta-wrap{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border-radius:14px; font-weight:700}
+    .btn-primary{background:var(--brand); color:#0b1d16}
+    .btn-ghost{border:2px solid rgba(255,255,255,.18); color:var(--text)}
+    .phone{
+      width:100%; aspect-ratio: 9/18; border-radius:36px; border:8px solid #0b1d16; background:#134233;
+      position:relative; overflow:hidden; box-shadow: var(--shadow);
     }
-    .controls {
-      text-align: center;
-      margin-bottom: 15px;
+    .phone img{width:100%; height:100%; object-fit:cover}
+    .chip{position:absolute; left:50%; transform:translateX(-50%); top:6px; width:28%; height:12px; background:#0b1d16; border-radius:0 0 12px 12px}
+
+    /* Features grid */
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin:28px 0}
+    .card{background:var(--card); color:#0e1713; border-radius:var(--radius); padding:18px; box-shadow: var(--shadow)}
+    .card h3{margin:0 0 8px; font-size:18px}
+    .meta{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px}
+    .meta div{background:#f1f6f3; border-radius:12px; padding:10px 12px; font-weight:600}
+
+    /* Section headings */
+    .section-title{display:flex; align-items:center; gap:10px; margin:40px 0 14px}
+    .section-title i{background:var(--brand); color:#0b1d16; width:34px; height:34px; display:grid; place-items:center; border-radius:10px}
+
+    /* Screenshots */
+    .shots{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
+    .shot{border-radius:20px; overflow:hidden; border:6px solid #0b1d16; background:#134233; aspect-ratio:9/18}
+
+    /* Social */
+    .social{display:flex; gap:14px; padding:30px 0}
+    .social a{width:44px; height:44px; display:grid; place-items:center; border-radius:12px; background:#103d2f; border:1px solid rgba(255,255,255,.08)}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.12); margin-top:34px}
+    .footer-inner{display:flex; justify-content:space-between; align-items:center; padding:18px 0 36px; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; }
+      .grid{grid-template-columns:1fr 1fr}
     }
-    .controls button {
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .speed-display {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
+    @media (max-width: 640px){
+      .grid{grid-template-columns:1fr}
+      .shots{grid-template-columns:1fr}
+      .hero h2{font-size:34px}
     }
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <h1>تشغيل فيديو HLS مع تحكم سرعة التشغيل</h1>
-    <video id="hlsPlayer" controls>
-      <source src="https://live-ak.vimeocdn.com/exp=1755116073~acl=%2F141d87f1-a5df-4c00-b539-038df351313f%2F%2A~hmac=9100e45e0fb7da93557b8dfafb52915aaca627ffc8d6fa0f148a7a53b994ee51/141d87f1-a5df-4c00-b539-038df351313f/avc/720p/chunklist.m3u8?max_segments=10&_HLS_skip=YES" type="application/x-mpegURL">
-      المتصفح الخاص بك لا يدعم تشغيل فيديو HLS مباشرةً.
-    </video>
-    <div class="controls">
-      <button id="decreaseSpeed">-</button>
-      <span class="speed-display" id="speedValue">1×</span>
-      <button id="increaseSpeed">+</button>
+  <header class="container nav">
+    <div class="brand">
+      <div class="brand-logo"><i class="fa-solid fa-play"></i></div>
+      <h1>BADR TV</h1>
     </div>
-  </div>
+    <nav>
+      <a href="#download" class="btn btn-primary"><i class="fa-brands fa-android"></i> تحميل التطبيق</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h2>أفضل تطبيق لمشاهدة المباريات والقنوات مجانًا</h2>
+        <p>
+          BADR TV يجمع لك قنوات الرياضة، الترفيه، القنوات العربية، قنوات الأطفال والمزيد –
+          بواجهة سريعة وخفيفة لهواتف أندرويد.
+        </p>
+        <div class="cta-wrap" id="download">
+          <a class="btn btn-primary" href="#apk-link"><i class="fa-solid fa-download"></i> تنزيل APK</a>
+          <a class="btn btn-ghost" href="#screens"><i class="fa-solid fa-image"></i> لقطات شاشة</a>
+        </div>
+        
+        <!-- App quick facts -->
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fa-solid fa-mobile-screen-button"></i> المتطلبات</h3>
+            <div class="meta">
+              <div>Android 4.2+</div>
+              <div>الحجم ~ 30MB</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3><i class="fa-solid fa-layer-group"></i> التصنيف</h3>
+            <div class="meta">
+              <div>قنوات TV</div>
+              <div>رياضة</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3><i class="fa-solid fa-star"></i> التقييم</h3>
+            <div class="meta">
+              <div>4.9/5</div>
+              <div>إصدار v1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="phone" aria-label="معاينة واجهة التطبيق">
+          <!-- ملاحظة: استبدل src بالصور الخاصة بك (screens/1.jpg) -->
+          <div class="chip"></div>
+          <img src="screens/1.jpg" alt="شاشة BADR TV" onerror="this.src='https://picsum.photos/450/900'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANNELS LIST SAMPLE (من الشكل الظاهر في كانفا) -->
+    <section>
+      <div class="section-title"><i class="fa-solid fa-list"></i><h3 style="margin:0">أقسام التطبيق</h3></div>
+      <div class="grid">
+        <div class="card">beIN SPORTS</div>
+        <div class="card">beIN ENTERTAINMENT</div>
+        <div class="card">SSC SPORTS</div>
+        <div class="card">ARABIC CHANNELS</div>
+        <div class="card">MBC CHANNELS</div>
+        <div class="card">KIDS CHANNELS</div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOTS -->
+    <section id="screens">
+      <div class="section-title"><i class="fa-solid fa-camera"></i><h3 style="margin:0">لقطات شاشة</h3></div>
+      <div class="shots">
+        <div class="shot"><img src="screens/2.jpg" alt="لقطة 1" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://picsum.photos/451/900'"/></div>
+        <div class="shot"><img src="screens/3.jpg" alt="لقطة 2" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://picsum.photos/452/900'"/></div>
+      </div>
+    </section>
+
+    <!-- CONTACT / SOCIAL -->
+    <section>
+      <div class="section-title"><i class="fa-solid fa-address-book"></i><h3 style="margin:0">تواصل معنا</h3></div>
+      <div class="social">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="mailto:appbadrtv@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> BADR TV</span>
+      <a href="#" class="btn btn-ghost" style="padding:10px 14px"><i class="fa-solid fa-shield"></i> سياسة الاستخدام</a>
+    </div>
+  </footer>
 
   <script>
-    const video = document.getElementById('hlsPlayer');
-    const speedValue = document.getElementById('speedValue');
-    const btnDec = document.getElementById('decreaseSpeed');
-    const btnInc = document.getElementById('increaseSpeed');
+    // سنة ديناميكية
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // نطاق سرعة التشغيل: من 0.5 إلى 3.0، مع خطوة 0.25
-    const MIN_SPEED = 0.5;
-    const MAX_SPEED = 3.0;
-    const STEP = 0.25;
-
-    btnDec.addEventListener('click', () => {
-      let current = video.playbackRate;
-      let newSpeed = Math.max(MIN_SPEED, (current - STEP).toFixed(2));
-      video.playbackRate = newSpeed;
-      speedValue.textContent = newSpeed + '×';
-    });
-
-    btnInc.addEventListener('click', () => {
-      let current = video.playbackRate;
-      let newSpeed = Math.min(MAX_SPEED, (current + STEP).toFixed(2));
-      video.playbackRate = newSpeed;
-      speedValue.textContent = newSpeed + '×';
-    });
-
-    // تأكيد السرعة الافتراضية عند التحميل
-    video.addEventListener('loadedmetadata', () => {
-      speedValue.textContent = video.playbackRate.toFixed(2) + '×';
+    // تمرير ناعم للروابط الداخلية
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id && id !== '#'){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+        }
+      });
     });
   </script>
 </body>
