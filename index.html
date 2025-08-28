@@ -8,7 +8,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <!-- Font Awesome (for icons) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
@@ -37,7 +37,7 @@
     .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0}
     .brand{display:flex; align-items:center; gap:14px}
     .brand-logo{width:80px;height:80px;display:grid;place-items:center;border-radius:50%;
-      overflow:hidden; box-shadow: var(--shadow)}
+      overflow:hidden; box-shadow: var(--shadow);}
     .brand-logo img{width:100%;height:100%;object-fit:cover}
     .brand h1{font-size:30px; letter-spacing:.5px; margin:0}
     .nav a.btn{padding:10px 18px; background:var(--brand); border-radius:999px; color:#0b1d16; font-weight:700; box-shadow:var(--shadow)}
@@ -76,7 +76,7 @@
 
     /* Section headings */
     .section-title{display:flex; align-items:center; gap:10px; margin:40px 0 14px}
-    .section-title i{background:var(--brand); color:#0b1d16; width:34px; height:34px; display:grid; place-items:center; border-radius:10px}
+    .section-title img{width:34px; height:34px; border-radius:8px} /* شعار بدل أيقونة */
 
     /* Screenshots */
     .shots{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
@@ -86,6 +86,7 @@
     /* Social */
     .social{display:flex; gap:14px; padding:30px 0}
     .social a{width:44px; height:44px; display:grid; place-items:center; border-radius:12px; background:#103d2f; border:1px solid rgba(255,255,255,.08)}
+    .social a img{width:24px; height:24px; object-fit:contain; border-radius:4px}
 
     /* Footer */
     footer{border-top:1px solid rgba(255,255,255,.12); margin-top:34px}
@@ -164,7 +165,7 @@
 
     <!-- CHANNELS LIST SAMPLE -->
     <section>
-      <div class="section-title"><i class="fa-solid fa-list"></i><h3 style="margin:0">أقسام التطبيق</h3></div>
+      <div class="section-title"><img src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV Logo"><h3 style="margin:0">أقسام التطبيق</h3></div>
       <div class="grid">
         <div class="card">beIN SPORTS</div>
         <div class="card">beIN ENTERTAINMENT</div>
@@ -177,7 +178,7 @@
 
     <!-- SCREENSHOTS -->
     <section id="screens">
-      <div class="section-title"><i class="fa-solid fa-camera"></i><h3 style="margin:0">لقطات شاشة</h3></div>
+      <div class="section-title"><img src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV Logo"><h3 style="margin:0">لقطات شاشة</h3></div>
       <div class="shots">
         <div class="shot"><img src="https://files.catbox.moe/2hdmx8.jpg" alt="لقطة 1"/></div>
         <div class="shot"><img src="https://files.catbox.moe/qxnitj.jpg" alt="لقطة 2"/></div>
@@ -186,11 +187,11 @@
 
     <!-- CONTACT / SOCIAL -->
     <section>
-      <div class="section-title"><i class="fa-solid fa-address-book"></i><h3 style="margin:0">تواصل معنا</h3></div>
+      <div class="section-title"><img src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV Logo"><h3 style="margin:0">تواصل معنا</h3></div>
       <div class="social">
-        <a href="https://www.facebook.com/share/16T7gJ3ipN/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="https://youtube.com/@appbadr_tv?si=RP68AD186DHGrimL" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="mailto:appbadrtv@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://www.facebook.com/share/16T7gJ3ipN/" target="_blank"><img src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV"></a>
+        <a href="https://youtube.com/@appbadr_tv?si=RP68AD186DHGrimL" target="_blank"><img src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV"></a>
+        <a href="mailto:appbadrtv@gmail.com"><img src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV"></a>
       </div>
     </section>
   </main>
