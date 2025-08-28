@@ -1,115 +1,211 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BADR TV App</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BADR TV – تطبيق البث المباشر</title>
+  <meta name="description" content="BADR TV – أفضل تطبيق لمشاهدة المباريات والقنوات مجانًا. صفحة هبوط قابلة للنشر على GitHub Pages." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-8a+K6vD0cV9m7z3VJ5s2r3b5R6n6r6U3WkQv3r6l2o1h" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f3f3;
-      margin: 0;
-      padding: 0;
-      direction: rtl;
-      text-align: center;
+    :root{
+      --bg:#0f3b2e;           /* الخلفية الداكنة */
+      --bg-soft:#1a4b3b;      /* ظل للخلفية */
+      --brand:#21c27a;        /* الأخضر الأساسي */
+      --brand-2:#18a864;      /* أخضر أغمق */
+      --text:#eaf4ef;         /* نص فاتح */
+      --muted:#cfe1d7;        /* نص ثانوي */
+      --card:#ffffff;         /* كرت */
+      --shadow: 0 12px 30px rgba(0,0,0,.18);
+      --radius: 18px;
     }
-    header {
-      background: #1a3d2f;
-      color: white;
-      padding: 20px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; 
+      background: radial-gradient(1200px 700px at 85% -10%, var(--bg-soft), var(--bg));
+      color:var(--text);
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1100px, 94%); margin:auto}
+
+    /* Nav */
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0}
+    .brand{display:flex; align-items:center; gap:14px}
+    .brand-logo{width:64px;height:64px;display:grid;place-items:center;border-radius:50%;
+      overflow:hidden; box-shadow: var(--shadow)}
+    .brand-logo img{width:100%;height:100%;object-fit:cover}
+    .brand h1{font-size:30px; letter-spacing:.5px; margin:0}
+    .nav a.btn{padding:10px 18px; background:var(--brand); border-radius:999px; color:#0b1d16; font-weight:700; box-shadow:var(--shadow)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; align-items:center; gap:36px; padding:26px 0 46px}
+    .hero h2{font-size:44px; margin:0 0 10px}
+    .hero p{color:var(--muted); margin:10px 0 22px; line-height:1.9}
+    .cta-wrap{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border-radius:14px; font-weight:700}
+    .btn-primary{background:var(--brand); color:#0b1d16}
+    .btn-ghost{border:2px solid rgba(255,255,255,.18); color:var(--text)}
+    .phone{
+      width:100%; aspect-ratio: 9/18; border-radius:36px; border:8px solid #0b1d16; background:#134233;
+      position:relative; overflow:hidden; box-shadow: var(--shadow);
     }
-    .logo img.icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    .phone img{width:100%; height:100%; object-fit:cover}
+    .chip{position:absolute; left:50%; transform:translateX(-50%); top:6px; width:28%; height:12px; background:#0b1d16; border-radius:0 0 12px 12px}
+
+    /* Features grid */
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin:28px 0}
+    .card{background:var(--card); color:#0e1713; border-radius:var(--radius); padding:18px; box-shadow: var(--shadow)}
+    .card h3{margin:0 0 8px; font-size:18px}
+    .meta{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px}
+    .meta div{background:#f1f6f3; border-radius:12px; padding:10px 12px; font-weight:600}
+
+    /* Section headings */
+    .section-title{display:flex; align-items:center; gap:10px; margin:40px 0 14px}
+    .section-title i{background:var(--brand); color:#0b1d16; width:34px; height:34px; display:grid; place-items:center; border-radius:10px}
+
+    /* Screenshots */
+    .shots{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
+    .shot{border-radius:20px; overflow:hidden; border:6px solid #0b1d16; background:#134233; aspect-ratio:9/18}
+
+    /* Social */
+    .social{display:flex; gap:14px; padding:30px 0}
+    .social a{width:44px; height:44px; display:grid; place-items:center; border-radius:12px; background:#103d2f; border:1px solid rgba(255,255,255,.08)}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.12); margin-top:34px}
+    .footer-inner{display:flex; justify-content:space-between; align-items:center; padding:18px 0 36px; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; }
+      .grid{grid-template-columns:1fr 1fr}
     }
-    .logo h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    .content {
-      padding: 20px;
-    }
-    .phone-preview {
-      margin-top: 20px;
-    }
-    .phone-preview img {
-      max-width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .download-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #2b7a4b;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-    .screenshots {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin: 30px 0;
-    }
-    .screenshots img {
-      width: 200px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    footer {
-      background: #1a3d2f;
-      color: white;
-      padding: 15px;
-      margin-top: 30px;
-    }
-    footer a {
-      margin: 0 8px;
-      color: white;
-      text-decoration: none;
+    @media (max-width: 640px){
+      .grid{grid-template-columns:1fr}
+      .shots{grid-template-columns:1fr}
+      .hero h2{font-size:34px}
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img class="icon" src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV Logo">
+  <header class="container nav">
+    <div class="brand">
+      <div class="brand-logo"><img src="https://files.catbox.moe/zlmid8.jpg" alt="BADR TV Logo"></div>
       <h1>BADR TV</h1>
     </div>
+    <nav>
+      <a href="#download" class="btn btn-primary"><i class="fa-brands fa-android"></i> تحميل التطبيق</a>
+    </nav>
   </header>
 
-  <div class="content">
-    <h2>BADR TV App</h2>
-    <p>أفضل تطبيق لمشاهدة المباريات مجانا 📺⚽</p>
-    <a class="download-btn" href="#apk-link">⬇️ تحميل التطبيق</a>
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h2>أفضل تطبيق لمشاهدة المباريات والقنوات مجانًا</h2>
+        <p>
+          BADR TV يجمع لك قنوات الرياضة، الترفيه، القنوات العربية، قنوات الأطفال والمزيد –
+          بواجهة سريعة وخفيفة لهواتف أندرويد.
+        </p>
+        <div class="cta-wrap" id="download">
+          <a class="btn btn-primary" href="#apk-link"><i class="fa-solid fa-download"></i> تنزيل APK</a>
+          <a class="btn btn-ghost" href="#screens"><i class="fa-solid fa-image"></i> لقطات شاشة</a>
+        </div>
+        
+        <!-- App quick facts -->
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fa-solid fa-mobile-screen-button"></i> المتطلبات</h3>
+            <div class="meta">
+              <div>Android 4.2+</div>
+              <div>الحجم ~ 30MB</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3><i class="fa-solid fa-layer-group"></i> التصنيف</h3>
+            <div class="meta">
+              <div>قنوات TV</div>
+              <div>رياضة</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3><i class="fa-solid fa-star"></i> التقييم</h3>
+            <div class="meta">
+              <div>4.9/5</div>
+              <div>إصدار v1</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="phone-preview">
-      <img src="https://files.catbox.moe/2hdmx8.jpg" alt="BADR TV Phone Preview">
-    </div>
+      <div>
+        <div class="phone" aria-label="معاينة واجهة التطبيق">
+          <!-- ملاحظة: استبدل src بالصور الخاصة بك (screens/1.jpg) -->
+          <div class="chip"></div>
+          <img src="screens/1.jpg" alt="شاشة BADR TV" onerror="this.src='https://files.catbox.moe/2hdmx8.jpg'" />
+        </div>
+      </div>
+    </section>
 
-    <h2>📱 Screenshots</h2>
-    <div class="screenshots">
-      <img src="screens/1.jpg" alt="screenshot 1">
-      <img src="screens/2.jpg" alt="screenshot 2">
-      <img src="screens/3.jpg" alt="screenshot 3">
-    </div>
-  </div>
+    <!-- CHANNELS LIST SAMPLE (من الشكل الظاهر في كانفا) -->
+    <section>
+      <div class="section-title"><i class="fa-solid fa-list"></i><h3 style="margin:0">أقسام التطبيق</h3></div>
+      <div class="grid">
+        <div class="card">beIN SPORTS</div>
+        <div class="card">beIN ENTERTAINMENT</div>
+        <div class="card">SSC SPORTS</div>
+        <div class="card">ARABIC CHANNELS</div>
+        <div class="card">MBC CHANNELS</div>
+        <div class="card">KIDS CHANNELS</div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOTS -->
+    <section id="screens">
+      <div class="section-title"><i class="fa-solid fa-camera"></i><h3 style="margin:0">لقطات شاشة</h3></div>
+      <div class="shots">
+        <div class="shot"><img src="screens/2.jpg" alt="لقطة 1" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://files.catbox.moe/2hdmx8.jpg'"/></div>
+        <div class="shot"><img src="screens/3.jpg" alt="لقطة 2" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://files.catbox.moe/2hdmx8.jpg'"/></div>
+      </div>
+    </section>
+
+    <!-- CONTACT / SOCIAL -->
+    <section>
+      <div class="section-title"><i class="fa-solid fa-address-book"></i><h3 style="margin:0">تواصل معنا</h3></div>
+      <div class="social">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="mailto:appbadrtv@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>تابعنا على:</p>
-    <a href="#">Facebook</a> |
-    <a href="#">YouTube</a> |
-    <a href="mailto:appbadrtv@gmail.com">Email</a>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> BADR TV</span>
+      <a href="#" class="btn btn-ghost" style="padding:10px 14px"><i class="fa-solid fa-shield"></i> سياسة الاستخدام</a>
+    </div>
   </footer>
+
+  <script>
+    // سنة ديناميكية
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // تمرير ناعم للروابط الداخلية
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id && id !== '#'){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+  </script>
 </body>
 </html>
